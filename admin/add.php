@@ -1,7 +1,11 @@
-<?php include 'db.php'; ?>
+<?php
+include 'db.php';
+?>
+
+
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
+    $name = $_POST['productname'];
     $desc = $_POST['description'];
     $price = $_POST['price'];
 
@@ -56,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label>Name</label>
-            <input type="text" name="name" class="form-control" required>
+            <input type="text" name="productname" class="form-control" required>
         </div>
         <div class="mb-3">
             <label>Description</label>
