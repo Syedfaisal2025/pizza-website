@@ -1,3 +1,10 @@
+<?php
+include 'admin/db.php';
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -340,9 +347,15 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#">Home</a></li>
         <li><a href="#menu">Menu</a></li>
+
         <li><a href="service.php">Service</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
+
+        <li><a href="service.html">Service</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+
       </ul>
 
       <div class="login">
@@ -376,32 +389,24 @@
       <button data-category="burgers">Burgers</button>
       <button data-category="pasta">Pasta</button>
     </div>
+<?php  
+$result = $conn->query("SELECT * FROM products");     
+while ($row = $result->fetch_assoc()): 
+?>     
+  <div class="menu-items" id="menu-items"> 
+    <!-- Product Item -->       
+    <div class="menu-item" data-category="pizza">         
+  <img src="admin/uploads/<?= $row['image']; ?>" />
+         
+      <h3><?= htmlspecialchars($row['name']) ?></h3>         
+      <p><?= $row['description']?></p>         
+      <div class="price"><?= $row ['price']?></div>         
+      <button>Add to cart</button>       
+    </div>           
+<?php endwhile; ?>  
 
-    <div class="menu-items" id="menu-items">
-      <!-- Pizza Items -->
-      <div class="menu-item" data-category="pizza">
-        <img src="https://images.unsplash.com/photo-1548365328-6cf3f2c327dd?auto=format&fit=crop&w=200&q=80" alt="Italian Pizza" />
-        <h3>Italian Pizza</h3>
-        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-        <div class="price">$2.90</div>
-        <button>Add to cart</button>
-      </div>
-
-      <div class="menu-item" data-category="pizza">
-        <img src="https://images.unsplash.com/photo-1601924582977-9f0467b93c09?auto=format&fit=crop&w=200&q=80" alt="Cheese Pizza" />
-        <h3>Cheese Pizza</h3>
-        <p>Cheesy goodness with fresh tomatoes and herbs, perfect for any occasion.</p>
-        <div class="price">$3.50</div>
-        <button>Add to cart</button>
-      </div>
-
-      <div class="menu-item" data-category="pizza">
-        <img src="https://images.unsplash.com/photo-1590080877777-06b0d0fa6953?auto=format&fit=crop&w=200&q=80" alt="Veggie Pizza" />
-        <h3>Veggie Pizza</h3>
-        <p>Loaded with fresh vegetables and a tangy tomato base for a healthy option.</p>
-        <div class="price">$3.10</div>
-        <button>Add to cart</button>
-      </div>
+      
+  
 
       <!-- Drinks Items -->
       <div class="menu-item" data-category="drinks" style="display:none">
